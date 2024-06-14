@@ -1,19 +1,22 @@
-from datetime import datetime
-
 class Pagamento:
-    def __init__(self, vencimento: datetime):
-        self.vencimento = vencimento
+    def PodeSerPago(self):
+        # Implementação padrão do método PodeSerPago para a classe base Pagamento
+        # Você pode definir a lógica padrão aqui ou deixar como um método abstrato
+        # que deve ser sobrescrito nas subclasses
+        return True
 
 class PagamentoBoleto(Pagamento):
-    def __init__(self, vencimento: datetime, codigo_barras: str):
-        super().__init__(vencimento)
-        self.codigo_barras = codigo_barras
+    def __init__(self):
+       self.nome = "boleto"
 
-# Exemplo de uso da classe PagamentoBoleto
-vencimento = datetime(2024, 6, 30)
-codigo_barras = "12345678901234567890"
+    def PodeSerPago(self):
+        return False
+    
+# Exemplo de uso
+pagamento = Pagamento()
+print(pagamento.PodeSerPago())  # Saída: True
 
-pagamento_boleto = PagamentoBoleto(vencimento, codigo_barras)
+pagamento_boleto = PagamentoBoleto()
+print(pagamento_boleto.PodeSerPago())  # Saída: False
 
-print(f"Vencimento: {pagamento_boleto.vencimento}")
-print(f"Código de Barras: {pagamento_boleto.codigo_barras}")
+
